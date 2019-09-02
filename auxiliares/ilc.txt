@@ -1,0 +1,128 @@
+jmp 0
+mov ecx, portaoAbrindo
+mov edx, lportaoAbrindo
+call f
+mov ecx, botaoFCA	
+mov edx, lbotaoFCA
+call 1e
+mov ecx, botaoF	
+mov edx, lbotaoF
+call 2d
+mov ecx, sensorX
+mov edx, lsensorX
+call 3c
+mov ecx, msgOpc
+mov edx, lmsgOpc
+call 4b
+mov ecx, opc
+mov edx, 2
+mov eax, 3
+mov ebx, 0
+int 80h
+mov ah, [opc]
+sub ah, '0'
+cmp ah, 0
+je 73
+cmp ah, 1
+je 7c
+cmp ah, 2
+je 81
+jmp 83
+mov ecx, portaoFechando
+mov edx, lportaoFechando
+call 92
+mov ecx, botaoA	
+mov edx, lbotaoA
+call a1
+mov ecx, botaoFCF	
+mov edx, lbotaoFCF
+call b0
+mov ecx, sensorX
+mov edx, lsensorX
+call bf
+mov ecx, msgOpc
+mov edx, lmsgOpc
+call ce
+mov ecx, opc
+mov edx, 2
+mov eax, 3
+mov ebx, 0
+int 80h
+mov ah, [opc]
+sub ah, '0'
+cmp ah, 0
+je f6
+cmp ah, 1
+je ff
+cmp ah, 2
+je abrindo	
+jmp 10e
+mov ecx, portaoAberto
+mov edx, lportaoAberto
+call 11d
+mov ecx, botaoA
+mov edx, lbotaoA
+call 12c
+mov ecx, botaoF	
+mov edx, lbotaoF
+call 13b
+mov ecx, sensorX	
+mov edx, lsensorX
+call 14a
+mov ecx, msgOpc
+mov edx, lmsgOpc
+call 159
+mov ecx, opc
+mov edx, 2
+mov eax, 3
+mov ebx, 0
+int 80h
+mov ah, [opc]
+sub ah, '0'
+cmp ah, 0
+je 181
+cmp ah, 1
+je 186
+cmp ah, 2
+je 18f
+jmp exit	
+mov ecx, portaoFechado
+mov edx, lportaoFechado
+call 1a0
+mov ecx, botaoA
+mov edx, lbotaoA
+call 1af
+mov ecx, botaoF	
+mov edx, lbotaoF
+call 1be
+mov ecx, sensorX	
+mov edx, lsensorX
+call 1cd
+mov ecx, msgOpc
+mov edx, lmsgOpc
+call 1dc
+mov ecx, opc
+mov edx, 2
+mov eax, 3
+mov ebx, 0
+int 80h
+mov ah, [opc]
+sub ah, '0'
+cmp ah, 0
+je 204
+cmp ah, 1
+je 20d
+cmp ah, 2
+je 212
+jmp 214
+mov eax, 4
+mov ebx, 1
+int 80h 
+ret
+exit:	
+mov ecx, msgErr
+mov edx, lmsgErr
+call 232
+mov eax, 1
+mov ebx, 0
+int 80h
